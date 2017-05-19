@@ -1,0 +1,18 @@
+version: '2'
+services:
+  spacy:
+    build:
+      context: .
+      dockerfile: Dockerfile-spacy
+    ports:
+      - "8000:8000"
+  displacy:
+    build:
+      context: .
+      dockerfile: Dockerfile-displacy
+    ports:
+      - "9000:9000"
+    links:
+      - spacy:spacy
+    depends_on:
+      - spacy
